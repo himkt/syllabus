@@ -10,7 +10,7 @@
 s = Roo::Excelx.new('vendor/kdb.xlsx')
 
 s.each_with_index do |arr, index|
-  next if index <= 3
+  next if index <= 4
   record = []
   arr.each_with_index do |item, _|
     next if index == 2 || index == 14
@@ -20,19 +20,21 @@ s.each_with_index do |arr, index|
     record.push(item)
   end
 
+  next unless record[0]
+
   Subject.create({
-    :kcode=>items[0].sub(/\.0$/,''),
-    :kname=>items[1],
-    :unit=>items[2],
-    :grade=>items[3],
-    :semester=>items[4],
-    :time=>items[5],
-    :location=>items[6],
-    :lecturer=>items[7],
-    :summary=>items[8],
-    :note=>items[9],
-    :credit=>items[10],
-    :condition=>items[11],
-    :alternative=>items[12]
+    :scode=>record[0].sub(/\.0$/,''),
+    :sname=>record[1],
+    :unit=>record[2],
+    :grade=>record[3],
+    :semester=>record[4],
+    :time=>record[5],
+    :location=>record[6],
+    :lecturer=>record[7],
+    :summary=>record[8],
+    :note=>record[9],
+    :credit=>record[10],
+    :conditions=>record[11],
+    :alternative=>record[12]
   })
 end
