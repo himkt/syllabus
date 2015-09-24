@@ -35,3 +35,4 @@ bower.json
 
 .DS_Store
 !/vendor/kdb.xlsx
+.env
