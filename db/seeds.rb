@@ -37,4 +37,6 @@ s.each_with_index do |arr, index|
     :conditions=>record[11],
     :alternative=>record[12]
   })
+
+  exit
 end
