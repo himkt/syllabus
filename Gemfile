@@ -14,6 +14,7 @@ group :production do
   gem 'pg'
 end
 
+gem 'dotenv-rails'
 # Use roo for parsing xslx
 gem 'roo'
 # Use SCSS for stylesheets
