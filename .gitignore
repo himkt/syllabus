@@ -27,7 +27,6 @@ config/secrets.yml
 .rvmrc
 
 # if using bower-rails ignore default bower_components path bower.json files
-/vendor
 *.bowerrc
 bower.json
 
@@ -35,4 +34,4 @@ bower.json
 .powenv
 
 .DS_Store
-!kdb.xlsx
+!/vendor/kdb.xlsx
