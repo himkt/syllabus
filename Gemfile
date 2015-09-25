@@ -10,7 +10,7 @@ group :development do
 end
 group :production do
   # Use postgresql as the database for Active Record
-  gem 'mysql2'
+  gem 'pg'
 end
 # Use dotenv-rails for switching environmental variables
 gem 'dotenv-rails'
