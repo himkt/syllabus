@@ -20,6 +20,8 @@ s.each_with_index do |arr, index|
     record.push(item)
   end
 
+  next if record[0] =~ /^0/
+
   begin
     Subject.create({
       :scode=>record[0],
