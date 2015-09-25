@@ -28,5 +28,5 @@ alternative: 英名(部分一致検索)
 
 ### Example
 
-http://itf-syllabus.herokuapp.com/api/v1/search
-
+https://itf-syllabus.herokuapp.com/api/v1/search
+https://itf-syllabus.herokuapp.com/api/v1/search?sname=%E5%9B%B3%E6%9B%B8%E9%A4%A8&unit=2&semester=%E6%98%A5&grade=2&note=%E5%9B%B3%E6%9B%B8%E9%A4%A8
