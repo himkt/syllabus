@@ -22,7 +22,9 @@ module API
               end
             end
             query = query.sub(/AND\s$/, '') if /AND\s$/ =~ query
-            subjects = Subject.where(query)
+            subjects = Subject
+              .select("scode, sname, unit, grade, semester, time, location, lecturer, summary, note, credit, conditions, alternative")
+              .where(query)
             hits = subjects.size
             
             # TODO: implement  since_id
@@ -31,7 +33,6 @@ module API
             result = subjects.first(20)
 
             {"status" => "ok", "hits" => hits, "result" => result}
-
           rescue
             {"status" => "error"}
           end
