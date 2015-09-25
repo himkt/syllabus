@@ -11,31 +11,26 @@ module API
       resource :search do
         desc 'simple search API'
         get do
+          arel = Subject.arel_table
+          subjects = Subject.select(normal_fields + like_fields + ['conditions'])
 
-          begin
-            query = ''
-            params.each_with_index do |(key, value), index|
-              if normal_fields.include?(key) || like_fields.include?(key)
-                query += "#{key} = '#{value}'" if normal_fields.include?(key)
-                query += "#{key} like '%#{value}%'" if like_fields.include?(key)
-                query += " AND "
-              end
+          params.each do |key, value|
+            case key
+            when *normal_fields
+              subjects = subjects.where(key => value)
+            when *like_fields
+              subjects = subjects.where(arel[key].matches("%#{value}%"))
             end
-            query = query.sub(/AND\s$/, '') if /AND\s$/ =~ query
-            subjects = Subject
-              .select("scode, sname, unit, grade, semester, time, location, lecturer, summary, note, credit, conditions, alternative")
-              .where(query)
-            hits = subjects.size
-            
-            # TODO: implement  since_id
-            # result = subjects.offset(params[:since_id].to_i).first(20) if params[:since_id]
-            # result = subjects.first(20) unless params[:since_id]
-            result = subjects.first(20)
-
-            {"status" => "ok", "encoding" => "UTF-8", "hits" => hits, "result" => result}
-          rescue
-            {"status" => "error"}
           end
+
+          hits = subjects.size
+
+          # TODO: implement  since_id
+          # result = subjects.offset(params[:since_id].to_i).first(20) if params[:since_id]
+          # result = subjects.first(20) unless params[:since_id]
+          result = subjects.first(20)
+
+          {"status" => "ok", "encoding" => "UTF-8", "hits" => hits, "result" => result}
         end
       end
     end
