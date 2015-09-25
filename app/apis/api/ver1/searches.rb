@@ -6,7 +6,7 @@ module API
 
       # query type init
       normal_fields = ['unit', 'grade', 'credit']
-      like_fields = ['scode', 'sname', 'location', 'semester', 'time', 'lecturer', 'summary', 'note']
+      like_fields = ['scode', 'sname', 'location', 'semester', 'time', 'lecturer', 'summary', 'note', 'alternative']
 
       resource :search do
         desc 'simple search API'
