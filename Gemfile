@@ -3,7 +3,6 @@ source 'https://rubygems.org'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.2.4'
-
 # Database setting
 group :development do
   # Use sqlite3 as the database for Active Record
@@ -11,9 +10,9 @@ group :development do
 end
 group :production do
   # Use postgresql as the database for Active Record
-  gem 'pg'
+  gem 'mysql2'
 end
-
+# Use dotenv-rails for switching environmental variables
 gem 'dotenv-rails'
 # Use roo for parsing xslx
 gem 'roo'
