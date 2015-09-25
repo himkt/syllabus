@@ -20,21 +20,23 @@ s.each_with_index do |arr, index|
     record.push(item)
   end
 
-  next unless record[0]
-
-  Subject.create({
-    :scode=>record[0].sub(/\.0$/,''),
-    :sname=>record[1],
-    :unit=>record[2],
-    :grade=>record[3],
-    :semester=>record[4],
-    :time=>record[5],
-    :location=>record[6],
-    :lecturer=>record[7],
-    :summary=>record[8],
-    :note=>record[9],
-    :credit=>record[10],
-    :conditions=>record[11],
-    :alternative=>record[12]
-  })
+  begin
+    Subject.create({
+      :scode=>record[0],
+      :sname=>record[1],
+      :unit=>record[3],
+      :grade=>record[4],
+      :semester=>record[5],
+      :time=>record[6],
+      :location=>record[7],
+      :lecturer=>record[8],
+      :summary=>record[9],
+      :note=>record[10],
+      :credit=>record[11],
+      :conditions=>record[12],
+      :alternative=>record[13]
+    })
+  rescue=>e
+    puts e
+  end
 end

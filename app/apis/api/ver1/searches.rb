@@ -16,16 +16,15 @@ module API
             query = ''
             params.each_with_index do |(key, value), index|
               if normal_fields.include?(key) || like_fields.include?(key)
-                query += "#{key} like '#{value}'" if normal_fields.include?(key)
+                query += "#{key} = '#{value}'" if normal_fields.include?(key)
                 query += "#{key} like '%#{value}%'" if like_fields.include?(key)
                 query += " AND "
               end
             end
             query = query.sub(/AND\s$/, '') if /AND\s$/ =~ query
-
             subjects = Subject.where(query)
             hits = subjects.size
-
+            
             # TODO: implement  since_id
             # result = subjects.offset(params[:since_id].to_i).first(20) if params[:since_id]
             # result = subjects.first(20) unless params[:since_id]
