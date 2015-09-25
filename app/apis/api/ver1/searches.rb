@@ -28,6 +28,10 @@ module API
           # TODO: implement  since_id
           # result = subjects.offset(params[:since_id].to_i).first(20) if params[:since_id]
           # result = subjects.first(20) unless params[:since_id]
+          
+          # patch
+          # TODO: migrate (remove null data from database)
+          subjects = subjects.where("scode IS NOT NULL")
           result = subjects.first(20)
 
           {"status" => "ok", "encoding" => "UTF-8", "hits" => hits, "result" => result}
