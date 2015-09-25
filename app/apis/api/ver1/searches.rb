@@ -12,7 +12,7 @@ module API
         desc 'simple search API'
         get do
           arel = Subject.arel_table
-          subjects = Subject.select(normal_fields + like_fields + ['conditions'])
+          subjects = Subject.select(normal_fields + like_fields + ['id', 'conditions'])
 
           params.each do |key, value|
             case key
