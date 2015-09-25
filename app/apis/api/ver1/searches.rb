@@ -5,8 +5,8 @@ module API
     class Searches < Grape::API
 
       # query type init
-      normal_fields = ['unit', 'grade', 'credit']
-      like_fields = ['scode', 'sname', 'location', 'semester', 'time', 'lecturer', 'summary', 'note', 'alternative']
+      normal_fields = ['unit', 'credit']
+      like_fields = ['scode', 'sname', 'location', 'semester', 'time', 'lecturer', 'summary', 'note', 'alternative', 'grade']
 
       resource :search do
         desc 'simple search API'

@@ -1,5 +1,9 @@
 # Syllabus
 
+## URL
+
+https://itf-syllabus.herokuapp.com
+
 ## API
 
 ```
@@ -21,3 +25,8 @@ summary: 概要(部分一致検索)
 note: 備考(部分一致検索)
 alternative: 英名(部分一致検索)
 ```
+
+### Example
+
+http://itf-syllabus.herokuapp.com/api/v1/search
+
