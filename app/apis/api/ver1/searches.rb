@@ -5,8 +5,8 @@ module API
     class Searches < Grape::API
 
       # query type init
-      normal_fields = ['scode', 'unit', 'grade', 'credit']
-      like_fields = ['sname', 'location', 'semester', 'time', 'lecturer', 'summary', 'note']
+      normal_fields = ['unit', 'grade', 'credit']
+      like_fields = ['scode', 'sname', 'location', 'semester', 'time', 'lecturer', 'summary', 'note']
 
       resource :search do
         desc 'simple search API'
@@ -15,11 +15,23 @@ module API
           begin
             query = ''
             params.each_with_index do |(key, value), index|
-              query += "#{key} like '#{value}'" if normal_fields.include?(key)
-              query += "#{key} like '%#{value}%'" if like_fields.include?(key)
-              query += " AND " if params.size-1 != index
+              if normal_fields.include?(key) || like_fields.include?(key)
+                query += "#{key} like '#{value}'" if normal_fields.include?(key)
+                query += "#{key} like '%#{value}%'" if like_fields.include?(key)
+                query += " AND "
+              end
             end
-            {"status" => "ok", "result" => Subject.where(query)}
+            query = query.sub(/AND\s$/, '') if /AND\s$/ =~ query
+
+            subjects = Subject.where(query)
+            hits = subjects.size
+
+            # TODO: implement  since_id
+            # result = subjects.offset(params[:since_id].to_i).first(20) if params[:since_id]
+            # result = subjects.first(20) unless params[:since_id]
+            result = subjects.first(20)
+
+            {"status" => "ok", "hits" => hits, "result" => result}
 
           rescue
             {"status" => "error"}
