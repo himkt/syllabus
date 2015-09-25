@@ -32,7 +32,7 @@ module API
             # result = subjects.first(20) unless params[:since_id]
             result = subjects.first(20)
 
-            {"status" => "ok", "hits" => hits, "result" => result}
+            {"status" => "ok", "encoding" => "UTF-8", "hits" => hits, "result" => result}
           rescue
             {"status" => "error"}
           end
