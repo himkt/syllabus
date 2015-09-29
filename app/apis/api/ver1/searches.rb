@@ -8,6 +8,8 @@ module API
       normal_fields = ['unit', 'credit']
       like_fields = ['scode', 'sname', 'location', 'semester', 'time', 'lecturer', 'summary', 'note', 'alternative', 'grade']
 
+=begin
+
       resource :search do
         desc 'simple search API'
         get do
@@ -24,19 +26,20 @@ module API
           end
 
           hits = subjects.size
-
+  
           # TODO: implement  since_id
           # result = subjects.offset(params[:since_id].to_i).first(20) if params[:since_id]
           # result = subjects.first(20) unless params[:since_id]
           
           # patch
           # TODO: migrate (remove null data from database)
-          subjects = subjects.where("scode IS NOT NULL")
+          # subjects = subjects.where("scode IS NOT NULL")
           result = subjects.first(20)
 
           {"status" => "ok", "encoding" => "UTF-8", "hits" => hits, "result" => result}
         end
       end
+=end
     end
   end
 end
